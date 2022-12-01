@@ -1,3 +1,16 @@
 @tailwind base;
 @tailwind components;
+
+.nav-link {
+    @apply text-neutral-50 hover:text-primary-dark-light font-exo-2 font-normal text-xl leading-none
+}
+
+.profile-link {
+    @apply text-neutral-50 font-exo-2 font-normal text-xl leading-none hover:text-primary-dark-light
+}
+
+.about-paragraph {
+    @apply text-neutral-50 font-exo-2 font-normal text-2xl leading-none
+}
+
 @tailwind utilities;
