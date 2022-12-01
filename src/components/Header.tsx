@@ -2,7 +2,7 @@ const Header = (): JSX.Element => {
     return (
         <header className="w-container mx-auto flex justify-between items-center py-[18px] px-10 sticky top-0 left-0 z-20 backdrop-blur-sm	">
             <a href="#" className="text-primary-dark-light font-exo-2 font-semibold text-xl leading-none">
-                &lt;KHANH DUY&gt;
+                &lt; KHANH DUY &gt;
             </a>
             <ul className="flex gap-7">
                 <li>
@@ -12,7 +12,7 @@ const Header = (): JSX.Element => {
                     <a href="#skills" className="nav-link">Skills</a>
                 </li>
                 <li>
-                    <a href="#" className="nav-link">Projects</a>
+                    <a href="#projects" className="nav-link">Projects</a>
                 </li>
                 <li>
                     <a href="#" className="nav-link">Contact Me</a>
