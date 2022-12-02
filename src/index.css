@@ -13,4 +13,8 @@
     @apply text-neutral-50 font-exo-2 font-normal text-2xl leading-none
 }
 
+.button-primary {
+    @apply px-6 py-2.5 rounded-[10px] font-exo-2 font-normal text-base leading-none
+}
+
 @tailwind utilities;

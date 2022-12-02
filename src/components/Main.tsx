@@ -1,5 +1,8 @@
 import skillsList from "../skillsList";
 import SkillCard from "./SkillCard";
+import DaltyDescription from "./DaltyDescription"
+import projectList from "../projectList";
+import ProjectCard from "./ProjectCard";
 
 const Main = (): JSX.Element => {
     return (
@@ -79,6 +82,19 @@ const Main = (): JSX.Element => {
             </section>
             <section id="projects" className="min-h-screen text-center">
                 <h1 className="text-neutral-50 font-exo-2 font-semibold text-[80px] leading-none mb-[42px]">Project</h1>
+                <div className="flex gap-12 flex-col">
+                    {projectList.map(item => (
+                        <ProjectCard
+                            title={item.title}
+                            preview={item.preview}
+                            stack={item.stack}
+                            shortDescription={item.shortDescription}
+                            primaryColor={item.primaryColor}
+                            codeLink={item.codeLink}
+                            demoLink={item.demoLink}
+                        />
+                    ))}
+                </div>
             </section>
         </main>
     )
