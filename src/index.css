@@ -22,8 +22,9 @@
 }
 
 .slider-x-snap {
-    @apply overflow-x-scroll scrollbar-hide snap-x 
-    snap-mandatory overscroll-x-contain
+    @apply overflow-x-scroll 
+    snap-x snap-mandatory overscroll-x-contain
+    /* scrollbar-hide */
 }
 
 @tailwind utilities;

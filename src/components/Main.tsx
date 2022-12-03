@@ -8,9 +8,8 @@ let sliderAutoScroll: any;
 let images: string[] = ['']
 
 const Main = ({ popupVisible, setPopupVisible }: any): JSX.Element => {
-    // const [selectedProjectIndex, setSelectedProjectIndex] = useState(0);
-    const [activeSlideIndex, setActiveSlideIndex] = useState(0)
-    const [imageSlides, setImageSlides] = useState<any>(['']);
+    const [activeSlideIndex, setActiveSlideIndex] = useState(1)
+    const [imageSlides, setImageSlides] = useState<any>(images);
     const imageSlider = useRef<HTMLDivElement>(null);
 
     const turnOnPopup = (index: number) => {
@@ -22,41 +21,35 @@ const Main = ({ popupVisible, setPopupVisible }: any): JSX.Element => {
         sliderAutoScroll = setInterval(() => {
             if (imageSlider.current) {
                 setActiveSlideIndex((prevIndex: number) => prevIndex + 1)
-                // imageSlider.current.scrollBy(
-                //     {
-                //         top: 0,
-                //         left: 1,
-                //         behavior : "smooth"
-                //     }
-                // );
-
             }
         }, 5000);
+
     };
 
     useEffect(() => {
-        console.log(activeSlideIndex)
-        images.push(images[activeSlideIndex])
+        images.push(images[activeSlideIndex - 1])
         setImageSlides(images)
 
-        if (imageSlider) {
-            imageSlider.current?.scrollBy(
-                {
-                    top: 0,
-                    left: 1,
-                    behavior : "smooth"
-                }
-            );
-        }
+        imageSlider.current?.scrollBy(
+            {
+                top: 0,
+                left: 1,
+                behavior : "smooth"
+            }
+        );
+    }, [activeSlideIndex])    
 
-    }, [activeSlideIndex])
-    
+    useEffect(() => {
+        imageSlider.current?.scrollTo(0,0)
+    },[popupVisible])
+
+    console.log(imageSlider.current?.scrollLeft)
 
     const turnOffPopup = () => {
         setPopupVisible(false)
         images = ['']
         setImageSlides(images)
-        setActiveSlideIndex(0)
+        setActiveSlideIndex(1)
         clearInterval(sliderAutoScroll)
     }
 
@@ -163,9 +156,12 @@ const Main = ({ popupVisible, setPopupVisible }: any): JSX.Element => {
                                 Close
                             </button>
                         </div>
-                        <div className="flex gap-10 slider-x-snap" ref={imageSlider}>
-                            {imageSlides.map((item: string, index: number) => (
-                                <img src={item} key={index} alt="" className="w-[440px] snap-center"/>
+                        <div className={`flex gap-10 slider-x-snap `} ref={imageSlider}>
+                            {imageSlides?.map((item: string, index: number) => (
+                                <img src={item} key={index} alt="" id="index"
+                                    className={`w-[440px]  
+                                        ${activeSlideIndex === index ? 'opacity-100 snap-center' : 'opacity-50'}
+                                        ${activeSlideIndex === 1 ? '' : 'snap-center'}`}/>
                             ))}
                         </div>
                     </div>
