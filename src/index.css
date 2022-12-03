@@ -17,4 +17,13 @@
     @apply px-6 py-2.5 rounded-[10px] font-exo-2 font-normal text-base leading-none
 }
 
+.dark-overlay-screen {
+    @apply after:absolute after:top-0 after:left-0 after:w-full after:h-screen after:z-40 after:bg-filter-dark
+}
+
+.slider-x-snap {
+    @apply overflow-x-scroll scrollbar-hide snap-x 
+    snap-mandatory overscroll-x-contain
+}
+
 @tailwind utilities;

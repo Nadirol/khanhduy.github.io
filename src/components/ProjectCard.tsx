@@ -1,4 +1,4 @@
-const ProjectCard = ({ title, preview, stack, shortDescription, primaryColor, codeLink, demoLink }: any): JSX.Element => {
+const ProjectCard = ({ title, preview, stack, shortDescription, primaryColor, codeLink, demoLink, popupToggle, }: any): JSX.Element => {
     return (
         <div className="grid gap-[120px] grid-cols-xs-lg">
             <div className="mx-auto">
@@ -25,7 +25,7 @@ const ProjectCard = ({ title, preview, stack, shortDescription, primaryColor, co
                 </h1>
                 <div className="flex gap-6 flex-wrap">
                     {stack.map((item: string) => (
-                        <button 
+                        <button key={item}
                             className={`border button-primary mb-5
                             ${primaryColor === 'light-yellow' 
                             ? 'border-light-yellow text-light-yellow hover:bg-light-yellow hover:text-neutral-900' 
@@ -38,7 +38,7 @@ const ProjectCard = ({ title, preview, stack, shortDescription, primaryColor, co
                     {shortDescription}
                 </p>
                 <button className={`${primaryColor === 'light-yellow' ? 'text-light-yellow' : 'text-primary-dark-light'}
-                    font-exo-2 font-medium text-base underline`}>
+                    font-exo-2 font-medium text-base underline`} onClick={popupToggle}>
                         View More
                 </button>
             </div>

@@ -10,6 +10,7 @@ type project = {
     primaryColor: string,
     codeLink: string,
     demoLink: string,
+    images: string[],
 }
 
 const projectList: project[] = [
@@ -23,6 +24,7 @@ const projectList: project[] = [
         primaryColor: 'light-yellow',
         codeLink: 'https://github.com/Nadirol/Dalty-Traveling-App',
         demoLink: 'https://dalty-traveling.netlify.app/',
+        images: ['images/dalty/dalty desktop 1.jpg','images/dalty/dalty desktop 2.jpg','images/dalty/dalty desktop 3.jpg','images/dalty/dalty desktop 4.jpg','images/dalty/dalty desktop 5.jpg','images/dalty/dalty dark.jpg',],
     },
     {
         id: 2,
@@ -34,6 +36,7 @@ const projectList: project[] = [
         primaryColor: 'default',
         codeLink: 'https://github.com/Nadirol/Dalty-Traveling-App',
         demoLink: 'https://dalty-traveling.netlify.app/',
+        images: ['images/dalty/dalty desktop 1.jpg','images/dalty/dalty desktop 2.jpg','images/dalty/dalty desktop 3.jpg','images/dalty/dalty desktop 4.jpg','images/dalty/dalty desktop 5.jpg','images/dalty/dalty dark.jpg',],
     }
 ]
 

@@ -17,8 +17,11 @@ module.exports = {
         'primary-dark-regular': 'rgba(34, 170, 161, 1)',
         'accent-dark-light': 'rgba(249, 205, 77, 1)',
         'neutral-50': 'rgba(242, 242, 242, 1)',
+        'neutral-200': 'rgba(219, 219, 219, 1)',
         'neutral-400': 'rgba(197, 197, 197, 1)',
+        'neutral-800': 'rgba(32, 34, 39, 1)',
         'neutral-900': 'rgba(8, 15, 15, 1)',
+        'filter-dark': 'rgba(8, 15, 15, 0.3)',
         'light-yellow': 'rgba(255, 212, 130, 1)',
         'regular-yellow': 'rgba(221, 172, 77, 1)',
       },
@@ -34,5 +37,8 @@ module.exports = {
       }
     },
   },
-  plugins: [],
+  plugins: [
+    require('tailwind-scrollbar-hide')
+    // ...
+  ]
 }

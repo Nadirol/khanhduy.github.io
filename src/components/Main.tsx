@@ -1,12 +1,67 @@
 import skillsList from "../skillsList";
 import SkillCard from "./SkillCard";
-import DaltyDescription from "./DaltyDescription"
 import projectList from "../projectList";
 import ProjectCard from "./ProjectCard";
+import { useState, useRef, useEffect } from "react";
 
-const Main = (): JSX.Element => {
+let sliderAutoScroll: any;
+let images: string[] = ['']
+
+const Main = ({ popupVisible, setPopupVisible }: any): JSX.Element => {
+    // const [selectedProjectIndex, setSelectedProjectIndex] = useState(0);
+    const [activeSlideIndex, setActiveSlideIndex] = useState(0)
+    const [imageSlides, setImageSlides] = useState<any>(['']);
+    const imageSlider = useRef<HTMLDivElement>(null);
+
+    const turnOnPopup = (index: number) => {
+        setPopupVisible(true);
+        images = [...projectList[index].images]
+        images.unshift(images[images.length - 1])
+        setImageSlides(images)
+
+        sliderAutoScroll = setInterval(() => {
+            if (imageSlider.current) {
+                setActiveSlideIndex((prevIndex: number) => prevIndex + 1)
+                // imageSlider.current.scrollBy(
+                //     {
+                //         top: 0,
+                //         left: 1,
+                //         behavior : "smooth"
+                //     }
+                // );
+
+            }
+        }, 5000);
+    };
+
+    useEffect(() => {
+        console.log(activeSlideIndex)
+        images.push(images[activeSlideIndex])
+        setImageSlides(images)
+
+        if (imageSlider) {
+            imageSlider.current?.scrollBy(
+                {
+                    top: 0,
+                    left: 1,
+                    behavior : "smooth"
+                }
+            );
+        }
+
+    }, [activeSlideIndex])
+    
+
+    const turnOffPopup = () => {
+        setPopupVisible(false)
+        images = ['']
+        setImageSlides(images)
+        setActiveSlideIndex(0)
+        clearInterval(sliderAutoScroll)
+    }
+
     return (
-        <main className="w-container mx-auto relative z-10">
+        <main className="w-container mx-auto z-10">
             <section id="about" className="min-h-section">
                 <div className="mt-4 py-7 pl-[6.375rem] grid gap-6 grid-cols-sm-lg">
                     <div className="pt-[84px]">
@@ -83,8 +138,9 @@ const Main = (): JSX.Element => {
             <section id="projects" className="min-h-screen text-center">
                 <h1 className="text-neutral-50 font-exo-2 font-semibold text-[80px] leading-none mb-[42px]">Project</h1>
                 <div className="flex gap-12 flex-col">
-                    {projectList.map(item => (
+                    {projectList.map((item, index) => (
                         <ProjectCard
+                            key={item.id}
                             title={item.title}
                             preview={item.preview}
                             stack={item.stack}
@@ -92,10 +148,29 @@ const Main = (): JSX.Element => {
                             primaryColor={item.primaryColor}
                             codeLink={item.codeLink}
                             demoLink={item.demoLink}
+                            popupToggle={() => turnOnPopup(index)}
                         />
                     ))}
                 </div>
             </section>
+            { popupVisible && (
+                <section className="">
+                    <div className="fixed z-50 bottom-1/2 right-1/2 translate-x-1/2 translate-y-1/2 w-[1024px]
+                        bg-neutral-800 px-6 py-5 ">
+                        <div className="ml-auto w-fit">
+                            <button className="px-6 py-2 bg-neutral-200 hover:bg-neutral-400 rounded-[10px]" 
+                                onClick={() => turnOffPopup()}>
+                                Close
+                            </button>
+                        </div>
+                        <div className="flex gap-10 slider-x-snap" ref={imageSlider}>
+                            {imageSlides.map((item: string, index: number) => (
+                                <img src={item} key={index} alt="" className="w-[440px] snap-center"/>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+            )}
         </main>
     )
 }
