@@ -19,6 +19,7 @@ module.exports = {
         'neutral-50': 'rgba(242, 242, 242, 1)',
         'neutral-200': 'rgba(219, 219, 219, 1)',
         'neutral-400': 'rgba(197, 197, 197, 1)',
+        'neutral-500': 'rgba(158, 158, 158, 1)',
         'neutral-800': 'rgba(32, 34, 39, 1)',
         'neutral-900': 'rgba(8, 15, 15, 1)',
         'filter-dark': 'rgba(8, 15, 15, 0.3)',
@@ -27,6 +28,7 @@ module.exports = {
       },
       width: {
         'container': 'min(1200px, 100% - 2rem)',
+        'form': 'min(776px, 100% - 1rem)'
       },
       minHeight: {
         'section': '90vh',

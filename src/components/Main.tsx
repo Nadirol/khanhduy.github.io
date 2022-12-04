@@ -8,27 +8,37 @@ let sliderAutoScroll: any;
 let images: string[] = ['']
 
 const Main = ({ popupVisible, setPopupVisible }: any): JSX.Element => {
+    const [selectedProjectIndex, setSelectedProjectIndex] = useState(0)
     const [activeSlideIndex, setActiveSlideIndex] = useState(1)
     const [imageSlides, setImageSlides] = useState<any>(images);
     const imageSlider = useRef<HTMLDivElement>(null);
 
     const turnOnPopup = (index: number) => {
+        setSelectedProjectIndex(index)
         setPopupVisible(true);
-        images = [...projectList[index].images]
+        images = [...projectList[selectedProjectIndex].images]
         images.unshift(images[images.length - 1])
         setImageSlides(images)
 
+        autoScrollOn()
+    };
+
+    const autoScrollOn = () => {
         sliderAutoScroll = setInterval(() => {
             if (imageSlider.current) {
                 setActiveSlideIndex((prevIndex: number) => prevIndex + 1)
             }
         }, 5000);
+    }
 
-    };
+        
+    const autoScrollOff = () => { clearInterval(sliderAutoScroll) }
 
     useEffect(() => {
         images.push(images[activeSlideIndex - 1])
         setImageSlides(images)
+
+        console.log(activeSlideIndex)
 
         imageSlider.current?.scrollBy(
             {
@@ -43,14 +53,16 @@ const Main = ({ popupVisible, setPopupVisible }: any): JSX.Element => {
         imageSlider.current?.scrollTo(0,0)
     },[popupVisible])
 
-    console.log(imageSlider.current?.scrollLeft)
-
     const turnOffPopup = () => {
         setPopupVisible(false)
         images = ['']
         setImageSlides(images)
         setActiveSlideIndex(1)
-        clearInterval(sliderAutoScroll)
+        autoScrollOff()
+    }
+
+    const contactFormSubmit = (e: any) => {
+        e.preventDefault();
     }
 
     return (
@@ -128,7 +140,7 @@ const Main = ({ popupVisible, setPopupVisible }: any): JSX.Element => {
                     ))}
                 </div>
             </section>
-            <section id="projects" className="min-h-screen text-center">
+            <section id="projects" className="min-h-screen text-center mb-16">
                 <h1 className="text-neutral-50 font-exo-2 font-semibold text-[80px] leading-none mb-[42px]">Project</h1>
                 <div className="flex gap-12 flex-col">
                     {projectList.map((item, index) => (
@@ -148,25 +160,94 @@ const Main = ({ popupVisible, setPopupVisible }: any): JSX.Element => {
             </section>
             { popupVisible && (
                 <section className="">
-                    <div className="fixed z-50 bottom-1/2 right-1/2 translate-x-1/2 translate-y-1/2 w-[1024px]
-                        bg-neutral-800 px-6 py-5 ">
-                        <div className="ml-auto w-fit">
+                    <div className="fixed z-50 bottom-1/2 right-1/2 translate-x-1/2 translate-y-1/2 
+                        bg-neutral-800 px-6 py-5 w-[1024px] max-h-[90vh] overflow-y-scroll scrollbar-hide">
+                        <div className="ml-auto w-fit mb-6">
                             <button className="px-6 py-2 bg-neutral-200 hover:bg-neutral-400 rounded-[10px]" 
                                 onClick={() => turnOffPopup()}>
                                 Close
                             </button>
                         </div>
-                        <div className={`flex gap-10 slider-x-snap `} ref={imageSlider}>
+                        <div className={`flex gap-10 slider-x-snap mb-9`} ref={imageSlider}>
                             {imageSlides?.map((item: string, index: number) => (
-                                <img src={item} key={index} alt="" id="index"
-                                    className={`w-[440px]  
+                                <img src={item} key={index} alt="" loading="lazy"
+                                    onMouseEnter={autoScrollOff}
+                                    onMouseLeave={autoScrollOn}
+                                    className={`w-[440px] hover:opacity-100
                                         ${activeSlideIndex === index ? 'opacity-100 snap-center' : 'opacity-50'}
                                         ${activeSlideIndex === 1 ? '' : 'snap-center'}`}/>
                             ))}
                         </div>
+                        <div className="px-20">
+                            <h1 className={`${projectList[selectedProjectIndex].primaryColor === 'light-yellow' 
+                                ? 'text-light-yellow' : 'text-primary-dark-light'}
+                                    font-exo-2 font-semibold text-4xl mb-9 text-center`}>
+                                {projectList[selectedProjectIndex].title}
+                            </h1>
+                            <div className="flex gap-[18px] w-fit mx-auto mb-9">
+                                <a href={projectList[selectedProjectIndex].codeLink} target="_blank" className={`border button-primary
+                                    ${projectList[selectedProjectIndex].primaryColor === 'light-yellow' 
+                                    ? 'border-light-yellow text-light-yellow hover:bg-light-yellow hover:text-neutral-900' 
+                                    : 'border-primary-dark-light text-primary-dark-light hover:bg-primary-dark-light hover:text-neutral-900'}`}>
+                                    Source Code
+                                </a>
+                                <a href={projectList[selectedProjectIndex].demoLink} target="_blank" className={`button-primary
+                                    ${projectList[selectedProjectIndex].primaryColor === 'light-yellow' 
+                                    ? 'bg-light-yellow hover:bg-regular-yellow' 
+                                    : 'bg-primary-dark-light hover:bg-primary-dark-regular'}`}>
+                                    Live Demo
+                                </a>
+                            </div>
+                            <div className="flex gap-7 items-center mb-9">
+                                <h1 className="text-neutral-50 font-exo-2 font-semibold text-xl leading-none my-auto">TechStack:</h1>
+                                <div className="flex gap-6">
+                                    {projectList[selectedProjectIndex].stack.map((item: string) => (
+                                        <button key={item}
+                                            className={`border button-primary
+                                                ${projectList[selectedProjectIndex].primaryColor === 'light-yellow' 
+                                                ? 'border-light-yellow text-light-yellow hover:bg-light-yellow hover:text-neutral-900' 
+                                                : 'border-primary-dark-light text-primary-dark-light hover:bg-primary-dark-light hover:text-neutral-900'}`}>
+                                            {item}
+                                        </button>
+                                    ))}
+                                </div>
+                            </div>
+                            <div className="">
+                                {projectList[selectedProjectIndex].fullDescription()}
+                            </div>
+                        </div>
                     </div>
                 </section>
             )}
+            <section id="contact" className="my-20">
+                <h1 className="text-neutral-50 font-exo-2 font-semibold text-[2rem] mb-[4rem] text-center">
+                    Thanks for taking a look,
+                    Leave a feedback or message
+                </h1>
+                <form onSubmit={e => contactFormSubmit(e)} id="contact-form"
+                    className="w-form mx-auto grid gap-x-[4.5rem] gap-y-9 grid-cols-2">
+                    <div className="form-text">
+                        <h1 className="mb-4">Your Name</h1>
+                        <input type="text" required placeholder="Enter your name"
+                            className="input-form"/>
+                    </div>
+                    <div className="form-text">
+                        <h1 className="mb-4">Email</h1>
+                        <input type="email" required placeholder="Enter your email"
+                            className="input-form"/>
+                    </div>
+                    <div className="col-[1/-1] form-text">
+                        <h1 className="mb-4">Message</h1>
+                        <textarea name="message" form="contact-form" rows={10} placeholder="Leave a message.." 
+                            className="input-form">
+                        </textarea>
+                    </div>
+                    <input type="submit" value="Submit" 
+                        className="mx-auto col-[1/-1] px-[30px] py-2 bg-primary-dark-light hover:bg-primary-dark-regular
+                            text-neutral-900 font-exo-2 font-medium text-base leading-none rounded-[10px]"/>
+                </form>
+            </section>
+            <h6 className="text-neutral-200 font-exo-2 font-normal text-xs leading-none">Copyright ©2022 Khanh Duy</h6>
         </main>
     )
 }

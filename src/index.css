@@ -24,7 +24,17 @@
 .slider-x-snap {
     @apply overflow-x-scroll 
     snap-x snap-mandatory overscroll-x-contain
-    /* scrollbar-hide */
+    scrollbar-hide
+}
+
+.input-form {
+    @apply w-full px-4 py-3 bg-transparent focus:outline-0 border border-primary-dark-light rounded-[10px]
+    caret-primary-dark-light
+    placeholder:text-neutral-500 placeholder:font-exo-2 placeholder:font-normal placeholder:text-xl placeholder:leading-none
+}
+
+.form-text {
+    @apply text-primary-dark-light font-exo-2 font-normal text-2xl leading-none 
 }
 
 @tailwind utilities;

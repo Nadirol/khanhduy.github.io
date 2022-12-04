@@ -1,7 +1,10 @@
 const DaltyDescription = (): JSX.Element => (
     <div className="">
-        <p>Dalty is an application where users can quickly discover new destinations based on street/city name, radius or categories and view the details of each destination. </p>
-        <ul>
+        <p className="text-neutral-50 font-exo-2 font-normal text-2xl mb-9">
+            Dalty is an application where users can quickly discover new destinations based on street/city name,
+             radius or categories and view the details of each destination. 
+        </p>
+        <ul className="list-disc list-inside text-neutral-50 font-exo-2 font-normal text-xl">
             <li>JSX and Tailwind was used to display every element/component as close to design as possible.</li>
             <li>React was used with multiple hooks to make interactions on buttons, search bars, sliders working correctly.</li>
             <li>React Router was used to create routing when navigating to different pages.</li>

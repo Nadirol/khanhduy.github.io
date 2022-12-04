@@ -16,12 +16,12 @@ const Header = ({ popupVisible }: any): JSX.Element => {
                     <a href="#projects" className="nav-link">Projects</a>
                 </li>
                 <li>
-                    <a href="#" className="nav-link">Contact Me</a>
+                    <a href="#contact" className="nav-link">Contact Me</a>
                 </li>
             </ul>
             <div className="flex gap-9">
                 <button>
-                    <img src="/images/light bulb.svg" alt="theme toggle" />
+                    <img src="/images/light bulb.svg" alt="theme toggle"/>
                 </button>
                 <button className="border border-primary-dark-light rounded-[10px] px-5 py-2    
                     text-primary-dark-light font-exo-2 font-normal text-base leading-none
