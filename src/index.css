@@ -37,4 +37,9 @@
     @apply text-primary-dark-light font-exo-2 font-normal text-2xl leading-none 
 }
 
+.bottom-fade {
+    @apply before:absolute before:h-[20%] before:w-full before:left-0 before:bottom-0
+    before:bg-gradient-to-b before:from-transparent before:to-neutral-800 before:pointer-events-none
+}
+
 @tailwind utilities;

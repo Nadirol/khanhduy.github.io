@@ -1,4 +1,4 @@
-import DaltyDescription from "./components/DaltyDescription"
+import DaltyDescription from "./components/projectDescriptions/DaltyDescription"
 
 type project = {
     id: number,

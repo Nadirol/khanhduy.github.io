@@ -34,9 +34,14 @@ module.exports = {
         'section': '90vh',
       },
       gridTemplateColumns: {
-        'sm-lg': '486px 1fr',
-        'xs-lg': '400px 1fr',
-      }
+        'base-lg': '486px 1fr',
+        'sm-lg': '400px 1fr',
+      },
+      screens: {
+        '-xl': { 'max': '1279px' } ,
+        '-md': { 'max': '767px' } ,
+        '-xs': { 'max': '300px' } ,
+      },
     },
   },
   plugins: [
