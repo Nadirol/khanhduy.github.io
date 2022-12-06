@@ -2,7 +2,7 @@ const ProjectCard = (
     { title, preview, stack, shortDescription, primaryColor, codeLink, demoLink, popupToggle }: any): 
     JSX.Element => {
         return (
-            <div className="grid md:gap-6 xl:gap-[120px]  grid-cols-sm-lg">
+            <div className="grid gap-6 xl:gap-[120px] md:grid-cols-sm-lg">
                 <div className="mx-auto">
                     <img src={preview} alt="project preview" className="max-w-[330px] mb-[18px]"/>
                     <div className="flex gap-[18px] w-fit mx-auto">
@@ -20,12 +20,12 @@ const ProjectCard = (
                         </a>
                     </div>
                 </div>
-                <div className="text-start">
+                <div className="text-center md:text-start">
                     <h1 className={`${primaryColor === 'light-yellow' ? 'text-light-yellow' : 'text-primary-dark-light'}
                         font-exo-2 font-semibold text-4xl mb-5`}>
                         {title}
                     </h1>
-                    <div className="flex gap-x-6 flex-wrap">
+                    <div className="flex gap-x-6 flex-wrap -md:justify-center">
                         {stack.map((item: string) => (
                             <button key={item}
                                 className={`border button-primary mb-5

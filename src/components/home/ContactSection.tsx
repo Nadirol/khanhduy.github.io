@@ -6,7 +6,7 @@ const ContactSection = () => (
             Leave a feedback or message
         </h1>
         <form action="https://formsubmit.co/f014aa1b902d62b9fceb94b24be012c5" method="POST" id="contact-form"
-            className="w-form mx-auto grid gap-x-[4.5rem] gap-y-9 grid-cols-2">
+            className="w-form mx-auto grid gap-x-4 md:gap-x-[4.5rem] gap-y-9 grid-cols-2">
             <div className="form-text">
                 <h1 className="mb-4">Your Name</h1>
                 <input type="text" name="name" required placeholder="Enter your name"

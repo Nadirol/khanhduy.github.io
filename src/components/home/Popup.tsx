@@ -12,7 +12,7 @@ const Popup = (
     return (
         <section className="fixed z-50 bottom-1/2 right-1/2 translate-x-1/2 translate-y-1/2
         bg-neutral-800 bottom-fade">
-            <div className="px-6 py-5 w-[1024px] max-h-[90vh]
+            <div className="px-6 py-5 w-mobile-screen md:w-[786px] xl:w-[1024px] max-h-[90vh]
                 overflow-y-scroll overscroll-y-contain scrollbar-hide ">
                 <div className="ml-auto w-fit mb-6">
                     <button className="px-6 py-2 bg-neutral-200 hover:bg-neutral-400 rounded-[10px]" 
@@ -30,7 +30,7 @@ const Popup = (
                                 ${activeSlideIndex === 1 ? '' : 'snap-center'}`}/>
                     ))}
                 </div>
-                <div className="px-20 mb-20">
+                <div className="px-4 md:px-20 mb-20">
                     <h1 className={`${project.primaryColor === 'light-yellow' 
                         ? 'text-light-yellow' : 'text-primary-dark-light'}
                             font-exo-2 font-semibold text-4xl mb-9 text-center`}>
@@ -51,8 +51,8 @@ const Popup = (
                         </a>
                     </div>
                     <div className="flex gap-7 items-center mb-9">
-                        <h1 className="text-neutral-50 font-exo-2 font-semibold text-xl leading-none my-auto">TechStack:</h1>
-                        <div className="flex gap-6">
+                        <h1 className="text-neutral-50 font-exo-2 font-semibold text-xl leading-none mb-auto md:my-auto">TechStack:</h1>
+                        <div className="flex gap-x-4 gap-y-2 md:gap-x-6 flex-wrap">
                             {project.stack.map((item: string) => (
                                 <button key={item}
                                     className={`border button-primary

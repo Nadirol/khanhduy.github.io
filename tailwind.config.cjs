@@ -28,6 +28,8 @@ module.exports = {
       },
       width: {
         'container': 'min(1200px, 100% - 2rem)',
+        'container-full': 'min(1200px, 100%)',
+        'mobile-screen': 'calc(100vw - 2rem)',
         'form': 'min(776px, 100% - 1rem)'
       },
       minHeight: {

@@ -14,7 +14,7 @@
 }
 
 .button-primary {
-    @apply px-6 py-2.5 rounded-[10px] font-exo-2 font-normal text-base leading-none
+    @apply px-3 md:px-6 py-2.5 rounded-[10px] font-exo-2 font-normal text-sm md:text-base leading-none
 }
 
 .dark-overlay-screen {
@@ -42,4 +42,12 @@
     before:bg-gradient-to-b before:from-transparent before:to-neutral-800 before:pointer-events-none
 }
 
+.mobile-nav {
+    @apply h-screen -md:gap-9
+    fixed -md:flex-col top-0 right-0 z-40 w-3/4 -md:pt-[102px] -md:px-[3.5rem] -md:bg-filter-dark -md:backdrop-blur-sm
+}
+
+.about-link {
+    @apply flex gap-[14px] items-center
+}
 @tailwind utilities;
