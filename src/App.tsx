@@ -2,7 +2,7 @@ import Header from "./components/Header"
 import Main from "./components/Main"
 import { createContext, useState } from "react";
 
-export const ThemeContext = createContext<any>(null);
+export const ThemeContext = createContext<{} | null>(null);
 
 const App = (): JSX.Element => {
   const [popupVisible, setPopupVisible] = useState(false);

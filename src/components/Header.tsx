@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const Header = ({ popupVisible, toggleTheme }: any): JSX.Element => {
+const Header = ({ popupVisible, toggleTheme }: { popupVisible: boolean, toggleTheme: () => void}): JSX.Element => {
     const [ navMenuOpen, setNavMenuOpen ] = useState(false);
 
     const toggleNavMenu = () => {

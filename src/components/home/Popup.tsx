@@ -1,11 +1,12 @@
 import React from "react"
+import { project } from "../../interfaces"
 
 const Popup = (
     { turnOffPopup, autoScrollOff, autoScrollOn, project, imageSlider, imageSlides, activeSlideIndex }
     : { turnOffPopup: () => void,
         autoScrollOff: () => void,
         autoScrollOn:  () => void,
-        project: any,
+        project: project,
         imageSlider: React.RefObject<HTMLDivElement>
         imageSlides: string[]
         activeSlideIndex: number}) => {

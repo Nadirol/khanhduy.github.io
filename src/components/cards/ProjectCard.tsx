@@ -1,5 +1,7 @@
+import { cardProject } from "../../interfaces";
+
 const ProjectCard = (
-    { title, preview, stack, shortDescription, primaryColor, codeLink, demoLink, popupToggle }: any): 
+    { title, preview, stack, shortDescription, primaryColor, codeLink, demoLink, popupToggle }: cardProject): 
     JSX.Element => {
         return (
             <div className="grid gap-6 xl:gap-[120px] md:grid-cols-sm-lg">

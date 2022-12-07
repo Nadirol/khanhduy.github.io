@@ -1,17 +1,5 @@
 import DaltyDescription from "./components/projectDescriptions/DaltyDescription"
-
-type project = {
-    id: number,
-    title: string,
-    preview: string,
-    stack: string[],
-    shortDescription: string,
-    fullDescription: () => JSX.Element,
-    primaryColor: string,
-    codeLink: string,
-    demoLink: string,
-    images: string[],
-}
+import { project } from "./interfaces";
 
 const projectList: project[] = [
     {

@@ -1,11 +1,12 @@
 import projectList from "../projectList";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, SetStateAction } from "react";
 import { AboutSection, ContactSection, Popup, ProjectsSection, SkillsSection } from "./home";
 
-let sliderAutoScroll: any;
+let sliderAutoScroll: NodeJS.Timer;
 let images: string[] = ['']
 
-const Main = ({ popupVisible, setPopupVisible }: any): JSX.Element => {
+const Main = ({ popupVisible, setPopupVisible }: 
+    { popupVisible: boolean, setPopupVisible: React.Dispatch<SetStateAction<boolean>> }): JSX.Element => {
     const [selectedProjectIndex, setSelectedProjectIndex] = useState(0)
     const [activeSlideIndex, setActiveSlideIndex] = useState(1)
     const [imageSlides, setImageSlides] = useState(images);

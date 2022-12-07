@@ -1,5 +1,6 @@
+import { cardSkill } from "../../interfaces";
 
-const SkillCard = ({ title, image, description, link }: any): JSX.Element => {
+const SkillCard = ({ title, image, description, link }: cardSkill): JSX.Element => {
     return (
         <a href={link} target="_blank"
             className="mt-auto relative [&:hover>.absolute]:block hover:bg-neutral-100 dark:hover:bg-neutral-800 px-6 pt-6 rounded-t-xl">
