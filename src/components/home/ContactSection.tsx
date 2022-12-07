@@ -1,7 +1,7 @@
 
 const ContactSection = () => (
     <section id="contact" className="my-20">
-        <h1 className="text-neutral-50 font-exo-2 font-semibold text-[2rem] mb-[4rem] text-center">
+        <h1 className="text-accent-light-light dark:text-neutral-50 font-exo-2 font-semibold text-[2rem] mb-[4rem] text-center">
             Thanks for taking a look, <br />
             Leave a feedback or message
         </h1>
@@ -24,8 +24,9 @@ const ContactSection = () => (
                 </textarea>
             </div>
             <input type="submit" value="Submit" 
-                className="mx-auto col-[1/-1] px-[30px] py-2 bg-primary-dark-light hover:bg-primary-dark-regular
-                    text-neutral-900 font-exo-2 font-medium text-base leading-none rounded-[10px]"/>
+                className="mx-auto col-[1/-1] px-8 py-3 bg-primary-light-light hover:bg-primary-light-regular
+                    dark:bg-primary-dark-light dark:hover:bg-primary-dark-regular
+                        text-secondary-light-light dark:text-neutral-900 font-exo-2 font-medium text-base leading-none rounded-[10px]"/>
             <input type="hidden" name="_next" value={'http://localhost:5173/#projects'}/>
             <input type="hidden" name="_captcha" value="false"/>
         </form>
