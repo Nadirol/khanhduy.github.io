@@ -27,7 +27,7 @@ const ContactSection = () => (
                 className="mx-auto col-[1/-1] px-8 py-3 bg-primary-light-light hover:bg-primary-light-regular
                     dark:bg-primary-dark-light dark:hover:bg-primary-dark-regular
                         text-secondary-light-light dark:text-neutral-900 font-exo-2 font-medium text-base leading-none rounded-[10px]"/>
-            <input type="hidden" name="_next" value={'http://localhost:5173/#projects'}/>
+            <input type="hidden" name="_next" value={'https://khanhduy-portfolio.netlify.app#contact'}/>
             <input type="hidden" name="_captcha" value="false"/>
         </form>
     </section>

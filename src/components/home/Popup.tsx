@@ -1,5 +1,20 @@
-import React from "react"
+import React, { useEffect, useRef } from "react"
 import { project } from "../../interfaces"
+
+const clickDetector = (ref: React.MutableRefObject<HTMLDivElement | null>, func: () => void) => {
+    useEffect(() => {
+        const handleClickOutside = (event: any) => {
+            if (ref.current && !ref.current.contains(event.target)) {
+                func()
+            }
+        }
+
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+          document.removeEventListener("mousedown", handleClickOutside);
+        };
+    },[ref])
+}
 
 const Popup = (
     { turnOffPopup, autoScrollOff, autoScrollOn, project, imageSlider, imageSlides, activeSlideIndex }
@@ -10,9 +25,12 @@ const Popup = (
         imageSlider: React.RefObject<HTMLDivElement>
         imageSlides: string[]
         activeSlideIndex: number}) => {
+    const popUpRef = useRef(null);
+    clickDetector(popUpRef, turnOffPopup)
+
     return (
         <section className="fixed z-50 bottom-1/2 right-1/2 translate-x-1/2 translate-y-1/2
-        bg-neutral-100 dark:bg-neutral-800 bottom-fade">
+        bg-neutral-100 dark:bg-neutral-800 bottom-fade" ref={popUpRef}>
             <div className="px-6 py-5 w-mobile-screen md:w-[786px] xl:w-[1024px] max-h-[90vh]
                 overflow-y-scroll overscroll-y-contain scrollbar-hide ">
                 <div className="ml-auto w-fit mb-6">

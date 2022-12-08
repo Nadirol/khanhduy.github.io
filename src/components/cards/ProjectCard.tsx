@@ -18,7 +18,7 @@ const ProjectCard = (
                             ${primaryColor === 'light-yellow' 
                             ? 'bg-light-yellow hover:bg-regular-yellow' 
                             : 'bg-primary-light-light dark:bg-primary-dark-light hover:bg-primary-light-regular dark:hover:bg-primary-dark-regular'}`}>
-                            Live Demo
+                            { title === "Portfolio" ? 'Design' : 'Live Demo'}
                         </a>
                     </div>
                 </div>

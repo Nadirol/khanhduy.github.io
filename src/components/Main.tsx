@@ -3,23 +3,26 @@ import { useState, useRef, useEffect, SetStateAction } from "react";
 import { AboutSection, ContactSection, Popup, ProjectsSection, SkillsSection } from "./home";
 
 let sliderAutoScroll: NodeJS.Timer;
-let images: string[] = ['']
+let selectedProjectIndex = 0
 
 const Main = ({ popupVisible, setPopupVisible }: 
     { popupVisible: boolean, setPopupVisible: React.Dispatch<SetStateAction<boolean>> }): JSX.Element => {
-    const [selectedProjectIndex, setSelectedProjectIndex] = useState(0)
     const [activeSlideIndex, setActiveSlideIndex] = useState(1)
-    const [imageSlides, setImageSlides] = useState(images);
+    const [imageSlides, setImageSlides] = useState(['']);
     const imageSlider = useRef<HTMLDivElement>(null);
 
     const turnOnPopup = (index: number) => {
-        setSelectedProjectIndex(index)
+        selectedProjectIndex = index
         setPopupVisible(true);
-        images = [...projectList[selectedProjectIndex].images]
-        images.unshift(images[images.length - 1])
-        setImageSlides(images)
 
-        autoScrollOn()
+        setImageSlides(() => {
+            console.log(selectedProjectIndex)
+            const slides = [...projectList[selectedProjectIndex].images]
+            slides.unshift(slides[slides.length - 1])
+            return slides
+        });
+
+        autoScrollOn();
     };
 
     const autoScrollOn = () => {
@@ -27,14 +30,16 @@ const Main = ({ popupVisible, setPopupVisible }:
             if (imageSlider.current) {
                 setActiveSlideIndex((prevIndex: number) => prevIndex + 1)
             }
-        }, 10000);
+        }, 2000);
     }
 
     const autoScrollOff = () => { clearInterval(sliderAutoScroll) }
 
     useEffect(() => {
-        images.push(images[activeSlideIndex - 1])
-        setImageSlides(images)
+        setImageSlides(prevSlides => {
+            prevSlides.push(prevSlides[activeSlideIndex - 1])
+            return prevSlides
+        })
 
         imageSlider.current?.scrollBy(
             {
@@ -45,12 +50,9 @@ const Main = ({ popupVisible, setPopupVisible }:
         );
     }, [activeSlideIndex])
 
-    console.log(document.querySelectorAll('.snap-center').length)
-
     const turnOffPopup = () => {
         setPopupVisible(false)
-        images = ['']
-        setImageSlides(images)
+        setImageSlides([''])
         setActiveSlideIndex(1)
         autoScrollOff()
     }
