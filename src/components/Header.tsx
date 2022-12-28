@@ -59,9 +59,9 @@ const Header = ({ popupVisible, toggleTheme }: { popupVisible: boolean, toggleTh
                             fill="#4CE0D2"/>
                         </svg>
                     </button>
-                    <button className="button-header">
+                    <a href="/resume-en.pdf" target="_blank" className="button-header">
                         Résume
-                    </button>
+                    </a>
                 </div>
             </div>
 
